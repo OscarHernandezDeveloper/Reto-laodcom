@@ -109,19 +109,19 @@
                     <h2 class="actions-title">Acciones Rápidas</h2>
                 </div>
                 <div class="actions-grid">
-                    <a href="#" class="btn btn-success">
+                    <a href="crear_cliente.php" class="btn btn-success">
                         <span class="btn-icon">➕</span>
                         Crear Nuevo Cliente
                     </a>
-                    <a href="#" class="btn btn-primary">
+                    <a href="clientes.php" class="btn btn-primary">
                         <span class="btn-icon">👥</span>
                         Ver Todos los Clientes
                     </a>
-                    <a href="#" class="btn btn-primary">
+                    <a href="reporte.php" class="btn btn-primary">
                         <span class="btn-icon">📊</span>
                         Generar Reporte
                     </a>
-                    <a href="#" class="btn btn-primary">
+                    <a href="clientes.php" class="btn btn-primary">
                         <span class="btn-icon">🔍</span>
                         Buscar Cliente
                     </a>
