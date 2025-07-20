@@ -1,20 +1,7 @@
 <?php
 require_once '../php/conexion.php';
 
-function existeCedula($cedula) {
-    global $conexion;
-
-    $sql = "SELECT COUNT(*) as total FROM clientes WHERE cedula = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("s", $cedula);
-    $stmt->execute();
-    $stmt->bind_result($total);
-    $stmt->fetch();
-    $stmt->close();
-
-    return $total > 0;
-}
-
+// Función para guardar un nuevo cliente
 function guardarCliente($datos) {
     global $conexion;
 
@@ -51,5 +38,66 @@ function guardarCliente($datos) {
 
     $stmt->close();
     return $resultado;
+}
+
+// Función para verificar si la cédula ya existe
+function existeCedula($cedula) {
+    global $conexion;
+
+    $sql = "SELECT COUNT(*) as total FROM clientes WHERE cedula = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("s", $cedula);
+    $stmt->execute();
+    $stmt->bind_result($total);
+    $stmt->fetch();
+    $stmt->close();
+
+    return $total > 0;
+}
+
+// Función para obtener el total de clientes
+function totalClientes() {
+    global $conexion;
+    $sql = "SELECT COUNT(*) as total FROM clientes";
+    $result = $conexion->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['total'];
+}
+
+// Función para obtener los clientes nuevos de hoy
+function nuevosHoy() {
+    global $conexion;
+    $sql = "SELECT COUNT(*) as total FROM clientes WHERE DATE(fecha_creacion) = CURDATE()";
+    $result = $conexion->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['total'];
+}
+
+// Función para obtener los clientes activos
+function clientesActivos() {
+    global $conexion;
+    $sql = "SELECT COUNT(*) as total FROM clientes WHERE estado = 'active'";
+    $result = $conexion->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['total'];
+}
+// Función para obtener los clientes inactivos
+function clientesInactivos() {
+    global $conexion;
+    $sql = "SELECT COUNT(*) as total FROM clientes WHERE estado = 'inactive'";
+    $result = $conexion->query($sql);
+    $row = $result->fetch_assoc();
+    return $row['total'];
+}
+
+function obtenerClientes() {
+    global $conexion;
+    $sql = "SELECT * FROM clientes";
+    $result = $conexion->query($sql);
+    $clientes = [];
+    while ($row = $result->fetch_assoc()) {
+        $clientes[] = $row;
+    }
+    return $clientes;
 }
 ?>

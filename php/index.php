@@ -1,3 +1,11 @@
+<?php
+require_once '../model/clienteModelo.php';
+
+$total = totalClientes();
+$nuevos = nuevosHoy();
+$activos = clientesActivos();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,7 +89,7 @@
                         <div class="stat-icon">👥</div>
                         <div class="stat-title">Total Clientes</div>
                     </div>
-                    <div class="stat-value">1.247</div>
+                    <div class="stat-value"><?php echo number_format($total);?></div>
                     <div class="stat-subtitle">Clientes registrados</div>
                 </div>
 
@@ -90,7 +98,7 @@
                         <div class="stat-icon">➕</div>
                         <div class="stat-title">Nuevos Hoy</div>
                     </div>
-                    <div class="stat-value">23</div>
+                    <div class="stat-value"><?php echo number_format($nuevos); ?></div>
                     <div class="stat-subtitle">Registros hoy</div>
                 </div>
 
@@ -99,7 +107,7 @@
                         <div class="stat-icon">✅</div>
                         <div class="stat-title">Activos</div>
                     </div>
-                    <div class="stat-value">1.156</div>
+                    <div class="stat-value"><?php echo number_format($activos); ?></div>
                     <div class="stat-subtitle">Clientes activos</div>
                 </div>
             </div>
