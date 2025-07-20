@@ -89,7 +89,7 @@
                     <p class="form-subtitle">Complete todos los campos marcados con (*) para registrar el cliente</p>
                 </div>
 
-                <form id="clienteForm" method="POST" action="#">
+                <form id="clienteForm" method="POST" action="../controllers/guardar_cliente.php">
                     <div class="form-grid">
                         <!-- Información Personal -->
                         <div class="form-section">

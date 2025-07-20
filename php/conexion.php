@@ -1,20 +1,12 @@
 <?php
-// Datos de conexión
-$servidor = "localhost";
-$usuario = "root";
-$password = "";
-$base_datos = "laodcom";
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "laodcom";
 
-// Crear conexión
-$conexion = new mysqli($servidor, $usuario, $password, $base_datos);
+$conexion = new mysqli($host, $user, $pass, $db);
 
-// Verificar conexión
 if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
+    die("❌ Error de conexión: " . $conexion->connect_error);
 }
-
-echo "Conexión exitosa";
-
-// Cerrar conexión
-$conexion->close();
 ?>
