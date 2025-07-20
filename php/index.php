@@ -30,19 +30,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="crear_cliente.php" class="nav-link">
                             <span class="nav-icon">➕</span>
                             Crear Cliente
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="reporte.php" class="nav-link">
                             <span class="nav-icon">📈</span>
                             Reportes
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="configuracion.php" class="nav-link">
                             <span class="nav-icon">⚙️</span>
                             Configuracion
                         </a>
