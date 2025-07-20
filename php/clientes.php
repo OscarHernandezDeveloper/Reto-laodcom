@@ -187,7 +187,7 @@ if ($busqueda != '' || $estado != '' || $ciudad != '') {
                                             <td><?php echo date('d/m/Y', strtotime($cliente['fecha_creacion'])); ?></td>
                                             <td>
                                                 <div class="actions-group">
-                                                    <a href="#" class="btn btn-primary btn-sm"><span class="btn-icon">👁️</span></a>
+                                                    <a href="ver_cliente.php?id=<?php echo $cliente['id']; ?>" class="btn btn-primary btn-sm"><span class="btn-icon">👁️</span></a>
                                                     <a href="#" class="btn btn-warning btn-sm"><span class="btn-icon">✏️</span></a>
                                                     <a href="#" class="btn btn-danger btn-sm"><span class="btn-icon">🗑️</span></a>
                                                 </div>

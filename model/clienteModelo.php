@@ -140,4 +140,17 @@ function obtenerClientesFiltrados($busqueda = '', $estado = '', $ciudad = '') {
     $stmt->close();
     return $clientes;
 }
+
+//function para obtener un cliente por ID
+function obtenerClientePorId($id) {
+    global $conexion;
+    $sql = "SELECT * FROM clientes WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $cliente = $result->fetch_assoc();
+    $stmt->close();
+    return $cliente;
+}
 ?>
