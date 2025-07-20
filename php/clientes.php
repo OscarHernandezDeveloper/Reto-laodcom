@@ -5,7 +5,15 @@ $total = totalClientes();
 $nuevos = nuevosHoy();
 $activos = clientesActivos();
 $inactivos = clientesInactivos();
-$clientes = obtenerClientes();
+$busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
+$estado = isset($_GET['estado']) ? $_GET['estado'] : '';
+$ciudad = isset($_GET['ciudad']) ? $_GET['ciudad'] : '';
+
+if ($busqueda != '' || $estado != '' || $ciudad != '') {
+    $clientes = obtenerClientesFiltrados($busqueda, $estado, $ciudad);
+} else {
+    $clientes = obtenerClientes();
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +32,6 @@ $clientes = obtenerClientes();
                 <h2>LAODCOM</h2>
                 <p>Innovación Tecnológica a tu alcance</p>
             </div>
-
             <nav>
                 <ul class="nav-menu">
                     <li class="nav-item">
@@ -59,7 +66,6 @@ $clientes = obtenerClientes();
                     </li>
                 </ul>
             </nav>
-
             <div class="contact-info">
                 <h4>Canales de Atención</h4>
                 <div class="contact-item">
@@ -101,12 +107,12 @@ $clientes = obtenerClientes();
                 </div>
             </header>
 
-            <!-- Controles y Filtros -->
+            <!-- Controles, Filtros y Tabla -->
             <section class="controls-section">
                 <div class="controls-header">
                     <h2 class="controls-title">Filtros y Acciones</h2>
                     <div>
-                        <a href="../php/crear_cliente.php" class="btn btn-success">
+                        <a href="crear_cliente.php" class="btn btn-success">
                             <span class="btn-icon">➕</span>
                             Nuevo Cliente
                         </a>
@@ -116,83 +122,90 @@ $clientes = obtenerClientes();
                         </a>
                     </div>
                 </div>
-                
-                <div class="filters-grid">
+                <form method="get" class="filters-grid">
                     <div class="form-group">
                         <label class="form-label">Buscar Cliente</label>
-                        <input type="text" class="form-control" placeholder="Nombre, email o teléfono...">
+                        <input type="text" name="busqueda" class="form-control" placeholder="Nombre, email o teléfono..." value="<?php echo isset($_GET['busqueda']) ? htmlspecialchars($_GET['busqueda']) : ''; ?>">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Estado</label>
-                        <select class="form-control">
+                        <select name="estado" class="form-control">
                             <option value="">Todos los estados</option>
-                            <option value="active">Activo</option>
-                            <option value="inactive">Inactivo</option>
-                            <option value="pending">Pendiente</option>
+                            <option value="active" <?php if(isset($_GET['estado']) && $_GET['estado']=='active') echo 'selected'; ?>>Activo</option>
+                            <option value="inactive" <?php if(isset($_GET['estado']) && $_GET['estado']=='inactive') echo 'selected'; ?>>Inactivo</option>
+                            <option value="pending" <?php if(isset($_GET['estado']) && $_GET['estado']=='pending') echo 'selected'; ?>>Pendiente</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Ciudad</label>
-                        <select class="form-control">
+                        <select name="ciudad" class="form-control">
                             <option value="">Todas las ciudades</option>
-                            <option value="barranquilla">Barranquilla</option>
-                            <option value="cartagena">Cartagena</option>
-                            <option value="santa-marta">Santa Marta</option>
+                            <option value="barranquilla" <?php if(isset($_GET['ciudad']) && $_GET['ciudad']=='barranquilla') echo 'selected'; ?>>Barranquilla</option>
+                            <option value="cartagena" <?php if(isset($_GET['ciudad']) && $_GET['ciudad']=='cartagena') echo 'selected'; ?>>Cartagena</option>
+                            <option value="santa-marta" <?php if(isset($_GET['ciudad']) && $_GET['ciudad']=='santa-marta') echo 'selected'; ?>>Santa Marta</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">&nbsp;</label>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" type="submit">
                             <span class="btn-icon">🔍</span>
                             Buscar
                         </button>
                     </div>
-                </div>
-            </section>
+                </form><br>
 
-            <!-- Tabla de Clientes -->
-            <section class="table-section">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
-                                <th>Ciudad</th>
-                                <th>Estado</th>
-                                <th>Fecha Registro</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($clientes as $cliente): ?>
+                <!-- Tabla de Clientes -->
+                <section class="table-section">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td><?php echo $cliente['id']; ?></td>
-                                    <td><?php echo htmlspecialchars($cliente['nombres'] . ' ' . $cliente['apellidos']); ?></td>
-                                    <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-                                    <td><?php echo htmlspecialchars($cliente['telefono']); ?></td>
-                                    <td><?php echo htmlspecialchars($cliente['ciudad']); ?></td>
-                                    <td>
-                                        <span class="status-badge status-<?php echo strtolower($cliente['estado']); ?>">
-                                            <?php echo ucfirst($cliente['estado']); ?>
-                                        </span>
-                                    </td>
-                                    <td><?php echo date('d/m/Y', strtotime($cliente['fecha_creacion'])); ?></td>
-                                    <td>
-                                        <div class="actions-group">
-                                            <a href="#" class="btn btn-primary btn-sm"><span class="btn-icon">👁️</span></a>
-                                            <a href="#" class="btn btn-warning btn-sm"><span class="btn-icon">✏️</span></a>
-                                            <a href="#" class="btn btn-danger btn-sm"><span class="btn-icon">🗑️</span></a>
-                                        </div>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Ciudad</th>
+                                    <th>Estado</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Acciones</th>
                                 </tr>
-                                <?php endforeach; ?>
+                            </thead>
+                            <tbody>
+                                <?php if (count($clientes) > 0): ?>
+                                    <?php foreach ($clientes as $cliente): ?>
+                                        <tr>
+                                            <td><?php echo $cliente['id']; ?></td>
+                                            <td><?php echo htmlspecialchars($cliente['nombres'] . ' ' . $cliente['apellidos']); ?></td>
+                                            <td><?php echo htmlspecialchars($cliente['email']); ?></td>
+                                            <td><?php echo htmlspecialchars($cliente['telefono']); ?></td>
+                                            <td><?php echo htmlspecialchars($cliente['ciudad']); ?></td>
+                                            <td>
+                                                <span class="status-badge status-<?php echo strtolower($cliente['estado']); ?>">
+                                                    <?php echo ucfirst($cliente['estado']); ?>
+                                                </span>
+                                            </td>
+                                            <td><?php echo date('d/m/Y', strtotime($cliente['fecha_creacion'])); ?></td>
+                                            <td>
+                                                <div class="actions-group">
+                                                    <a href="#" class="btn btn-primary btn-sm"><span class="btn-icon">👁️</span></a>
+                                                    <a href="#" class="btn btn-warning btn-sm"><span class="btn-icon">✏️</span></a>
+                                                    <a href="#" class="btn btn-danger btn-sm"><span class="btn-icon">🗑️</span></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="8" style="text-align:center; color:#888;">
+                                            No se encontraron clientes con los criterios seleccionados.
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
                 </section>
+            </section>
         </main>
     </div>
 </body>

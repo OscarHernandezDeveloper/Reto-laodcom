@@ -100,4 +100,44 @@ function obtenerClientes() {
     }
     return $clientes;
 }
+
+function obtenerClientesFiltrados($busqueda = '', $estado = '', $ciudad = '') {
+    global $conexion;
+    $sql = "SELECT * FROM clientes WHERE 1";
+    $params = [];
+    $types = "";
+
+    if ($busqueda != '') {
+        $sql .= " AND (nombres LIKE ? OR apellidos LIKE ? OR email LIKE ? OR telefono LIKE ?)";
+        $busquedaParam = "%$busqueda%";
+        $params[] = $busquedaParam;
+        $params[] = $busquedaParam;
+        $params[] = $busquedaParam;
+        $params[] = $busquedaParam;
+        $types .= "ssss";
+    }
+    if ($estado != '') {
+        $sql .= " AND estado = ?";
+        $params[] = $estado;
+        $types .= "s";
+    }
+    if ($ciudad != '') {
+        $sql .= " AND ciudad = ?";
+        $params[] = $ciudad;
+        $types .= "s";
+    }
+
+    $stmt = $conexion->prepare($sql);
+    if (count($params) > 0) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $clientes = [];
+    while ($row = $result->fetch_assoc()) {
+        $clientes[] = $row;
+    }
+    $stmt->close();
+    return $clientes;
+}
 ?>
