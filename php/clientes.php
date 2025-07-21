@@ -116,7 +116,7 @@ if ($busqueda != '' || $estado != '' || $ciudad != '') {
                             <span class="btn-icon">➕</span>
                             Nuevo Cliente
                         </a>
-                        <a href="#" class="btn btn-primary">
+                        <a href="exportar_cliente.php" class="btn btn-primary">
                             <span class="btn-icon">📊</span>
                             Exportar
                         </a>
