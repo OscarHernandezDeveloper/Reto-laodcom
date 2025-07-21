@@ -103,7 +103,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">👤</span>
                                     <input type="text" id="nombres" name="nombres" class="form-control" 
-                                           placeholder="Ingrese los nombres" required>
+                                        placeholder="Ingrese los nombres" required>
                                 </div>
                                 <div class="form-error">Por favor ingrese los nombres del cliente</div>
                             </div>
@@ -113,7 +113,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">👤</span>
                                     <input type="text" id="apellidos" name="apellidos" class="form-control" 
-                                           placeholder="Ingrese los apellidos" required>
+                                        placeholder="Ingrese los apellidos" required>
                                 </div>
                                 <div class="form-error">Por favor ingrese los apellidos del cliente</div>
                             </div>
@@ -123,7 +123,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">🆔</span>
                                     <input type="text" id="cedula" name="cedula" class="form-control" 
-                                           placeholder="Ej: 1234567890" pattern="[0-9]{8,12}" required>
+                                        placeholder="Ej: 1234567890" pattern="[0-9]{8,12}" required>
                                 </div>
                                 <div class="form-help">Solo números, entre 8 y 12 dígitos</div>
                                 <div class="form-error">Por favor ingrese una cédula válida</div>
@@ -150,7 +150,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">✉️</span>
                                     <input type="email" id="email" name="email" class="form-control" 
-                                           placeholder="ejemplo@email.com" required>
+                                        placeholder="ejemplo@email.com" required>
                                 </div>
                                 <div class="form-error">Por favor ingrese un email válido</div>
                             </div>
@@ -160,7 +160,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">📱</span>
                                     <input type="tel" id="telefono" name="telefono" class="form-control" 
-                                           placeholder="+57 300 123 4567" pattern="[+]?[0-9\s-()]{10,15}" required>
+                                        placeholder="+57 300 123 4567" pattern="[+]?[0-9\s-()]{10,15}" required>
                                 </div>
                                 <div class="form-help">Incluya código de país y área</div>
                                 <div class="form-error">Por favor ingrese un teléfono válido</div>
@@ -171,7 +171,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">📞</span>
                                     <input type="tel" id="telefono_alt" name="telefono_alt" class="form-control" 
-                                           placeholder="+57 300 123 4567 (opcional)">
+                                        placeholder="+57 300 123 4567 (opcional)">
                                 </div>
                             </div>
 
@@ -201,7 +201,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">🏠</span>
                                     <input type="text" id="direccion" name="direccion" class="form-control" 
-                                           placeholder="Calle, carrera, número..." required>
+                                        placeholder="Calle, carrera, número..." required>
                                 </div>
                                 <div class="form-error">Por favor ingrese la dirección</div>
                             </div>
@@ -225,7 +225,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">🏘️</span>
                                     <input type="text" id="barrio" name="barrio" class="form-control" 
-                                           placeholder="Nombre del barrio (opcional)">
+                                        placeholder="Nombre del barrio (opcional)">
                                 </div>
                             </div>
 
@@ -234,7 +234,7 @@
                                 <div class="input-group">
                                     <span class="input-icon">📮</span>
                                     <input type="text" id="codigo_postal" name="codigo_postal" class="form-control" 
-                                           placeholder="080001" pattern="[0-9]{5,6}">
+                                        placeholder="080001" pattern="[0-9]{5,6}">
                                 </div>
                             </div>
                         </div>
@@ -250,7 +250,7 @@
                         <div class="form-group">
                             <label for="observaciones" class="form-label">Observaciones</label>
                             <textarea id="observaciones" name="observaciones" class="form-control" 
-                                      rows="4" placeholder="Notas o comentarios adicionales sobre el cliente..."></textarea>
+                                    rows="4" placeholder="Notas o comentarios adicionales sobre el cliente..."></textarea>
                         </div>
 
                     <!-- Botones de acción -->

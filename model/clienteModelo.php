@@ -153,4 +153,33 @@ function obtenerClientePorId($id) {
     $stmt->close();
     return $cliente;
 }
+
+// Función para actualizar un cliente
+function actualizarCliente($datos) {
+    global $conexion;
+    $sql = "UPDATE clientes SET
+        nombres = ?, apellidos = ?, cedula = ?, fecha_nacimiento = ?, email = ?, telefono = ?, telefono_alt = ?, estado = ?, direccion = ?, ciudad = ?, barrio = ?, codigo_postal = ?, observaciones = ?
+        WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param(
+        "sssssssssssssi",
+        $datos['nombres'],
+        $datos['apellidos'],
+        $datos['cedula'],
+        $datos['fecha_nacimiento'],
+        $datos['email'],
+        $datos['telefono'],
+        $datos['telefono_alt'],
+        $datos['estado'],
+        $datos['direccion'],
+        $datos['ciudad'],
+        $datos['barrio'],
+        $datos['codigo_postal'],
+        $datos['observaciones'],
+        $datos['id']
+    );
+    $resultado = $stmt->execute();
+    $stmt->close();
+    return $resultado;
+}
 ?>
