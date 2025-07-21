@@ -181,5 +181,14 @@ function actualizarCliente($datos) {
     $resultado = $stmt->execute();
     $stmt->close();
     return $resultado;
+
+    function eliminarCliente($id) {
+    global $conexion;
+    $sql = "DELETE FROM clientes WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+}
 }
 ?>
